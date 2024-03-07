@@ -22,7 +22,7 @@ s = tf('s');
 %load tuned PID regulator called 'C1'
 load PID;
 %% PID TUNER
-%Limit values for control terms estimated with 'PIDTuner' tool:
+%Limit values for tuned constants estimated with 'PIDTuner' tool:
 % Kp = <0, 16>; Ki = <0, 64>; Kd = <0, 0.0256>
 Kp = C1.Kp; Ki = C1.Ki; Kd = C1.Kd; Tf = 0.1;
 %Regulators' transfer function
@@ -115,8 +115,6 @@ while  F_best < Fmin
             e = e + e1(j);
         end
         individual(i).e = e / length(t);
-        %dzielenie "przez 1" w celu szukania maksimum a nie minimum
-        %(ułatwienie przypisywania wycinków koła ruletki)
         %division "by 1" in order to find maximum rather than minimum
         %(easing wheel section assign)
         individual(i).F = 1000 / individual(i).e;
